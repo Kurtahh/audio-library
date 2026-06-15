@@ -1,40 +1,39 @@
 CXX = g++
 CXXFLAGS = -std=c++17 -Wall
 
-HIERARCHY_OBJS = Hierarchy/Track.o Hierarchy/Song.o Hierarchy/Podcast.o
-CONTAINER_OBJS = Container/AudioLibrary.o Container/StatStrategy.o
+OBJS = Track.o Song.o Podcast.o AudioLibrary.o StatStrategy.o
 
-module.o: $(HIERARCHY_OBJS) $(CONTAINER_OBJS)
-	$(CXX) $(CXXFLAGS) -c $(HIERARCHY_OBJS) $(CONTAINER_OBJS) -o module.o
+module.o: $(OBJS)
+	$(CXX) $(CXXFLAGS) -c $(OBJS) -o module.o
 
-Hierarchy/Track.o: Hierarchy/Track.cpp Hierarchy/Track.h
-	$(CXX) $(CXXFLAGS) -c Hierarchy/Track.cpp -o Hierarchy/Track.o
+Track.o: Track.cpp Track.h
+	$(CXX) $(CXXFLAGS) -c Track.cpp -o Track.o
 
-Hierarchy/Song.o: Hierarchy/Song.cpp Hierarchy/Track.h
-	$(CXX) $(CXXFLAGS) -c Hierarchy/Song.cpp -o Hierarchy/Song.o
+Song.o: Song.cpp Track.h
+	$(CXX) $(CXXFLAGS) -c Song.cpp -o Song.o
 
-Hierarchy/Podcast.o: Hierarchy/Podcast.cpp Hierarchy/Track.h
-	$(CXX) $(CXXFLAGS) -c Hierarchy/Podcast.cpp -o Hierarchy/Podcast.o
+Podcast.o: Podcast.cpp Track.h
+	$(CXX) $(CXXFLAGS) -c Podcast.cpp -o Podcast.o
 
-Container/AudioLibrary.o: Container/AudioLibrary.cpp Container/AudioLibrary.h
-	$(CXX) $(CXXFLAGS) -c Container/AudioLibrary.cpp -o Container/AudioLibrary.o
+AudioLibrary.o: AudioLibrary.cpp AudioLibrary.h
+	$(CXX) $(CXXFLAGS) -c AudioLibrary.cpp -o AudioLibrary.o
 
-Container/StatStrategy.o: Container/StatStrategy.cpp Container/StatStrategy.h
-	$(CXX) $(CXXFLAGS) -c Container/StatStrategy.cpp -o Container/StatStrategy.o
+StatStrategy.o: StatStrategy.cpp StatStrategy.h
+	$(CXX) $(CXXFLAGS) -c StatStrategy.cpp -o StatStrategy.o
 
-demo: $(HIERARCHY_OBJS) $(CONTAINER_OBJS) demo.cpp
-	$(CXX) $(CXXFLAGS) $(HIERARCHY_OBJS) $(CONTAINER_OBJS) demo.cpp -o demo
+demo: $(OBJS) demo.cpp
+	$(CXX) $(CXXFLAGS) $(OBJS) demo.cpp -o demo
 
 run_demo: demo
 	./demo
 
-test: $(HIERARCHY_OBJS) $(CONTAINER_OBJS) test.cpp
-	$(CXX) $(CXXFLAGS) $(HIERARCHY_OBJS) $(CONTAINER_OBJS) test.cpp -o test
+test: $(OBJS) test.cpp
+	$(CXX) $(CXXFLAGS) $(OBJS) test.cpp -o test
 
 run_test: test
 	./test
 
 clean:
-	rm -f $(HIERARCHY_OBJS) $(CONTAINER_OBJS) module.o demo test
+	rm -f $(OBJS) module.o demo test
 
 rebuild: clean demo test
