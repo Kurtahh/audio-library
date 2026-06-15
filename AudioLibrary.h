@@ -36,27 +36,11 @@ class AudioLibrary {
         class Iterator {
             std::map<int, Track*>::iterator it;
         public:
-            // Constructs an iterator wrapping the given map iterator
-            Iterator(std::map<int, Track*>::iterator it) : it(it) {}
-
-            // Dereferences to the current Track*
-            Track* operator*() const {
-                return it->second;
-            }
-
-            // Advances to the next track
-            Iterator& operator++() {
-                ++it;
-                return *this;
-            }
-
-            bool operator!=(const Iterator& other) const {
-                return it != other.it;
-            }
-
-            bool operator==(const Iterator& other) const {
-                return it == other.it;
-            }
+            Iterator(std::map<int, Track*>::iterator it);
+            Track* operator*() const;
+            Iterator& operator++();
+            bool operator!=(const Iterator& other) const;
+            bool operator==(const Iterator& other) const;
         };
 
         // Returns an iterator to the first track

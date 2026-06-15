@@ -48,6 +48,25 @@ void AudioLibrary::remove(int id) {
     pImpl->tracks.erase(id);
 }
 
+AudioLibrary::Iterator::Iterator(std::map<int, Track*>::iterator it) : it(it) {}
+
+Track* AudioLibrary::Iterator::operator*() const {
+    return it->second;
+}
+
+AudioLibrary::Iterator& AudioLibrary::Iterator::operator++() {
+    ++it;
+    return *this;
+}
+
+bool AudioLibrary::Iterator::operator!=(const Iterator& other) const {
+    return it != other.it;
+}
+
+bool AudioLibrary::Iterator::operator==(const Iterator& other) const {
+    return it == other.it;
+}
+
 AudioLibrary::Iterator AudioLibrary::begin() const {
     return AudioLibrary::Iterator(pImpl->tracks.begin());
 }

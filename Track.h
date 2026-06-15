@@ -28,7 +28,7 @@ class Track {
             double size,
             std::string format
         );
-
+        Track(const Track&) = default;
     public:
         virtual ~Track() = default;
 
