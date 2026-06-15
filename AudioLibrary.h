@@ -1,5 +1,5 @@
 #pragma once
-#include "../Hierarchy/Track.h"
+#include "Track.h"
 #include "StatStrategy.h"
 #include <vector>
 #include <map>

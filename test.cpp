@@ -1,6 +1,6 @@
-#include "Hierarchy/Track.h"
-#include "Container/AudioLibrary.h"
-#include "Container/StatStrategy.h"
+#include "Track.h"
+#include "AudioLibrary.h"
+#include "StatStrategy.h"
 #include "Exceptions.h"
 #include <iostream>
 #include <cassert>
